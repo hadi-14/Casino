@@ -5,35 +5,52 @@
 {% block main %}
 <div class="games">
 
-    <div class="card" onclick="document.getElementById('game1').style.display='block'">
-        <img src="{% static 'assests/games/1.jpg' %}" alt="unavailable">
-    </div>
-    <div class="card"><img src="{% static 'assests/games/2.jpg' %}" alt="unavailable"></div>
-    <div class="card"><img src="{% static 'assests/games/3.jpg' %}" alt="unavailable"></div>
-    <div class="card"><img src="{% static 'assests/games/4.jpg' %}" alt="unavailable"></div>
-    <div class="card"><img src="{% static 'assests/games/5.jpg' %}" alt="unavailable"></div>
-    <div class="card" onclick="document.getElementById('game6').style.display='block'"><img src="{% static 'assests/games/6.jpg' %}" alt="unavailable"></div>
-    <div class="card"><img src="{% static 'assests/games/7.jpg' %}" alt="unavailable"></div>
-    <div class="card"><img src="{% static 'assests/games/8.jpg' %}" alt="unavailable"></div>
-    <div class="card"><img src="{% static 'assests/games/9.jpg' %}" alt="unavailable"></div>
-    <div class="card"><img src="{% static 'assests/games/10.jpg' %}" alt="unavailable"></div>
-    <div class="card"><img src="{% static 'assests/games/11.jpg' %}" alt="unavailable"></div>
-    <div class="card"><img src="{% static 'assests/games/12.jpg' %}" alt="unavailable"></div>
-    <div class="card"><img src="{% static 'assests/games/13.jpg' %}" alt="unavailable"></div>
-    <div class="card"><img src="{% static 'assests/games/14.jpg' %}" alt="unavailable"></div>
-    <div class="card"><img src="{% static 'assests/games/15.jpg' %}" alt="unavailable"></div>
-    <div class="card"><img src="{% static 'assests/games/16.jpg' %}" alt="unavailable"></div>
+  <!-- <div class="card" onclick="document.getElementById('game1').style.display='block'">
+    <img src="{% static 'assests/games/1.jpg' %}" alt="unavailable">
+  </div>
+  <div class="card"><img src="{% static 'assests/games/2.jpg' %}" alt="unavailable"></div>
+  <div class="card"><img src="{% static 'assests/games/3.jpg' %}" alt="unavailable"></div>
+  <div class="card"><img src="{% static 'assests/games/4.jpg' %}" alt="unavailable"></div>
+  <div class="card"><img src="{% static 'assests/games/5.jpg' %}" alt="unavailable"></div>
+  <div class="card" onclick="document.getElementById('game6').style.display='block'">
+    <img src="{% static 'assests/games/6.jpg' %}" alt="unavailable">
+  </div>
+  <div class="card"><img src="{% static 'assests/games/7.jpg' %}" alt="unavailable"></div>
+  <div class="card"><img src="{% static 'assests/games/8.jpg' %}" alt="unavailable"></div>
+  <div class="card"><img src="{% static 'assests/games/9.jpg' %}" alt="unavailable"></div>
+  <div class="card"><img src="{% static 'assests/games/10.jpg' %}" alt="unavailable"></div>
+  <div class="card"><img src="{% static 'assests/games/11.jpg' %}" alt="unavailable"></div>
+  <div class="card"><img src="{% static 'assests/games/12.jpg' %}" alt="unavailable"></div>
+  <div class="card"><img src="{% static 'assests/games/13.jpg' %}" alt="unavailable"></div>
+  <div class="card"><img src="{% static 'assests/games/14.jpg' %}" alt="unavailable"></div>
+  <div class="card"><img src="{% static 'assests/games/15.jpg' %}" alt="unavailable"></div>
+  <div class="card"><img src="{% static 'assests/games/16.jpg' %}" alt="unavailable"></div>
 
-    
+
   <div id="game1" class="modal" style="padding-left:100px;">
-    <span onclick="document.getElementById('game1').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <iframe src="https://games2.expanse.studio/games/sicbo/index.html?oid=1677&language=en" class="games-iframe"></iframe>
+    <span onclick="document.getElementById('game1').style.display='none'" class="close"
+      title="Close Modal">&times;</span>
+    <iframe src="https://games2.expanse.studio/games/sicbo/index.html?oid=1677&language=en"
+      class="games-iframe"></iframe>
   </div>
 
   <div id="game6" class="modal" style="padding-left:100px;">
-    <span onclick="document.getElementById('game6').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <iframe src="https://bgaming-network.com/play/SpaceXY/FUN?server=demo" class="games-iframe"></iframe>
+    <span onclick="document.getElementById('game6').style.display='none'" class="close"
+      title="Close Modal">&times;</span>
+    <iframe src="https://bgaming-network.com/play/SpaceXY/FUN?server=demo" class="games-iframe"></iframe>
+  </div> -->
+
+{% for id, image in image_files %}
+<div class="card" onclick="document.getElementById('{{id}}').style.display='block'"><img src="{% static image %}" alt="unavailable"></div>
+{% endfor %}
+
+{% for game, id in game_links %}
+  <div id="{{id}}" class="modal" style="padding-left:100px;">
+    <span onclick="document.getElementById('{{id}}').style.display='none'" class="close"
+      title="Close Modal">&times;</span>
+    <iframe src="{{game}}" class="games-iframe"></iframe>
   </div>
+{% endfor %}
 
 </div>
 

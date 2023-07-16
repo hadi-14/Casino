@@ -3,14 +3,29 @@ from .forms import User
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
+import os
+import json
 
 def members(request):
   template = loader.get_template('main.html')
   return HttpResponse(template.render())
 
 def games(request):
-  template = loader.get_template('games.html')
-  return HttpResponse(template.render())
+  image_folder = 'members/static/assests/games'  # Path to your static folder
+  image_files = [(f'game{cnt}', os.path.join('assests/games', i)) for cnt, i in enumerate(os.listdir(image_folder), start=1)]
+
+  ids = [f'game{i+1}' for i in range(len(image_files))]
+
+  with open("members/static/games_links.json", "r") as f:
+    games_links = json.load(f)
+
+  context = {
+    "pics" : range(1, 17),
+    'image_files': image_files,
+    'game_links': zip(games_links, ids),
+    }
+
+  return render(request, 'games.html', context)
 
 def test(request):
   template = loader.get_template('test.html')
