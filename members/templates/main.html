@@ -1,0 +1,42 @@
+{% extends 'template.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block main %}
+
+<div class="slideshow-container">
+
+  <!-- Full-width images with number and caption text -->
+  <div class="mySlides fade">
+    <img src="{% static 'assests/1.png' %}" style="width:100%; border-radius: 10px;">
+  </div>
+
+  <div class="mySlides fade">
+    <img src="{% static 'assests/2.png' %}" style="width:100%; border-radius: 10px;">
+  </div>
+
+  <div class="mySlides fade">
+    <img src="{% static 'assests/3.png' %}" style="width:100%; border-radius: 10px;">
+  </div>
+
+  <!-- <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span> -->
+</div>
+
+{% blocktranslate %}
+
+<!-- Slideshow container -->
+
+<div class="heading">
+  <h1 style="color: #35c31e; size: 80px;">Leading Crypto Casino</h1>
+  <p style="color: #dddddd44; ">Enjoy 5000+ crypto games, fast payouts and 24/7 live support.<br> Make the best of
+    the superior Bitcoin Casino.</p>
+  <button onclick="document.getElementById('id01').style.display='inline-block'" class="button button1"
+    style="color: black; background-color: #35c31e; width: 100px; height: 70px; text-size-adjust: 60%;"><b>Sign
+      up</b></button>
+</div>
+
+{% endblocktranslate %}
+
+{% endblock %}

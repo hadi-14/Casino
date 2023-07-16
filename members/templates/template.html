@@ -1,0 +1,208 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <title>Casino</title>
+  <link rel="icon" type="" href="{% static 'assests/top.png' %}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital@1&amp;display=swap&amp;_cacheOverride=1679385048801"
+    rel="stylesheet">
+</head>
+
+<body>
+
+  <div id="id01" class="modal">
+    <span onclick="document.getElementById('id01').style.display='none'" class="close"
+      title="Close Modal">&times;</span>
+    <form class="modal-content" method="post">
+      <!-- {% csrf_token %}
+      {{ form.get_name }} -->
+      <div class="container">
+        <h1 style="outline:black 2px;">Sign Up</h1>
+        <p style="color: #ddd;">Please fill in this form to create an account.</p>
+        <hr>
+        <label for="email" style="color: #ddd;"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" required>
+
+        <label for="psw" style="color: #ddd;"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+
+        <label for="psw-repeat" style="color: #ddd;"><b>Repeat Password</b></label>
+        <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+
+        <label>
+          <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px">
+          Remember me
+        </label>
+
+        <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+        <div class="clearfix">
+          <button type="button"
+            onclick="document.getElementById('id01').style.display='none';$(body).not(document.getElementById('id01')).css('filter','blur(15px)');"
+            class="cancelbtn">Cancel</button>
+          <button type="submit" class="signupbtn">Sign Up</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <div id="id02" class="modal">
+    <span onclick="document.getElementById('id02').style.display='none'" class="close"
+      title="Close Modal">&times;</span>
+    <form class="modal-content" action="/" method="post">
+      <div class="container">
+        <h1 style="outline:black 2px;">Welcome Back</h1>
+        <p style="color: #ddd;">Please fill in this form to Login</p>
+        <hr>
+        <label for="email" style="color: #ddd;"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" name="email" required>
+
+        <label for="psw" style="color: #ddd;"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+        <label>
+          <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px">
+          Remember me
+        </label>
+
+        <div class="clearfix">
+          <button type="button"
+            onclick="document.getElementById('id01').style.display='none';$(body).not(document.getElementById('id01')).css('filter','blur(15px)');"
+            class="cancelbtn">Cancel</button>
+          <button type="submit" class="signupbtn">Login</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <header class="navigation-bar">
+
+    <div class="logo">
+      <div>
+        <button onclick="show_side_bar()">
+          <img src="{% static 'assests/icon.png' %}" alt="">
+        </button>
+
+        <a href="{% url 'members' %}">
+          <img src="{% static 'assests/logos.png' %}" alt="Logo unavailable" height=25%, width=25%>
+        </a>
+      </div>
+    </div>
+
+    <div class="account">
+      <button onclick="document.getElementById('id02').style.display='block'" class="login">Login</button>
+      <button onclick="document.getElementById('id01').style.display='block'" class="signup">Signup</button>
+    </div>
+
+  </header>
+
+  <div id="side-bar" class="sidebar">
+    <table>
+      <tr>
+        <td><img class="GFG" src="{% static 'assests/PIC1.png' %}" alt="unavailable"></td>
+        <td><img class="GFG" src="{% static 'assests/PIC2.png' %}" alt="unavailable"></td>
+      </tr>
+      <tr>
+        <td><img class="GFG" src="{% static 'assests/PIC3.png' %}" alt="unavailable"></td>
+        <td><img class="GFG" src="{% static 'assests/PIC4.png' %}" alt="unavailable"></td>
+      </tr>
+    </table>
+    <br><br>
+    <!-- <a href="javascript:void(0)" class="closebtn" onclick="show_side_bar()">&times;</a> -->
+    <a href="{% url 'games' %}">All games</a>
+    <a href="#">VIP Rank System</a>
+    <a href="#">All Bonuses</a>
+    <a href="#">Earn</a>
+    <a href="#">Free Crypto Boxes</a>
+    <a href="#">Referal</a>
+    <a href="#">News</a>
+    <a href="#">About Sport</a>
+    <form action="{% url 'set_language' %}" method="post" class="language-selector">
+      <!-- {% csrf_token %} -->
+      <select name="language">
+         {% get_current_language as LANGUAGE_CODE %}
+         {% get_available_languages as LANGUAGES %}
+         {% get_language_info_list for LANGUAGES as languages %}
+         {% for language in languages %}
+           <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+               {{ language.name_local }} ({{ language.code }})
+           </option>
+         {% endfor %}
+      </select>
+      <input type="submit" value="Go">
+  </form>
+ 
+  </div>
+
+  <div class="main">
+    {% block main %}
+    {% endblock %}
+  </div>
+  <div class="footer">
+    <table style="width: 60%; padding: top 30px;">
+      <tr>
+        <th><br></th>
+        <th><br></th>
+        <th><br></th>
+        <th><br></th>
+        <th><br></th>
+      </tr>
+      <tr style="color: #35c31e; font-weight: 200; opacity: 50%; font-size: 18px;">
+        <th>I-Gaming</th>
+        <th>Featues</th>
+        <th>Gaming</th>
+        <th>Promo</th>
+        <th>About us</th>
+      </tr>
+      <tr style="opacity: 30%;">
+        <td>All games</td>
+        <td>Stacking</td>
+        <td>Promotion</td>
+        <td>News</td>
+        <td>Fairness</td>
+      </tr>
+      <tr style="opacity: 30%;">
+        <td>Dice</td>
+        <td>Box</td>
+        <td></td>
+        <td>About BFG</td>
+        <td>Privacy policy</td>
+      </tr>
+      <tr style="opacity: 30%;">
+        <td>slots</td>
+        <td>Cashback</td>
+        <td></td>
+        <td>Whitepaper</td>
+        <td>Sportsbetting T&C</td>
+      </tr>
+      <tr style="opacity: 30%;">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Docs</td>
+        <td>Big bounty program</td>
+      </tr>
+      <tr style="opacity: 30%;">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Official mirrors</td>
+        <td>Live support</td>
+      </tr>
+      <tr style="opacity: 30%;">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Responsible Gambling</td>
+      </tr>
+    </table>
+  </div>
+  <script src="{% static 'script.js' %}"></script>
+</body>
+
+</html>
