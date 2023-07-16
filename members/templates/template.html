@@ -121,8 +121,7 @@
     <a href="#">Referal</a>
     <a href="#">News</a>
     <a href="#">About Sport</a>
-    <form action="{% url 'set_language' %}" method="post" class="language-selector">
-      <!-- {% csrf_token %} -->
+    <!-- <form action="{% url 'set_language' %}" method="post" class="language-selector">
       <select name="language">
          {% get_current_language as LANGUAGE_CODE %}
          {% get_available_languages as LANGUAGES %}
@@ -134,7 +133,7 @@
          {% endfor %}
       </select>
       <input type="submit" value="Go">
-  </form>
+  </form> -->
  
   </div>
 
